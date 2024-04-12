@@ -1,0 +1,22 @@
+comment
+    content
+    vedio
+    owner
+User
+    username
+    email
+    fullName
+    avatar
+    coverImage
+    watchHistory
+    password
+    refreshToken
+vedio
+    videoFile
+    thumbnail
+    title
+    description
+    duration
+    views
+    isPublished
+    owner
