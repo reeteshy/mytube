@@ -1,21 +1,25 @@
 import express from 'express'
 import connectionDB from './api/db/index.js';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import bodyParser from 'body-parser'
+// import {userControllder} from './api/controllers/userController.js';
 // import 'dotenv/config'
+import userRouter from './api/routes/user.js'
 
 const app = express();
-// app.use(express.json())
+
+app.use(express.json())
+app.use(bodyParser.json())
+app.use(
+    bodyParser.urlencoded({
+      extended: true
+    })
+  );
 
 connectionDB().then(()=>{
     console.log("DB connected successfully")
 })
 
-app.post('/v1/api/user/register', (req, resp)=> {
-    console.log("Application route called")
-    resp.status(201).json({
-        message: 'Thing created successfully!'
-      });
-})
+app.use('/v1/api/user', userRouter)
 
 app.get('/', (req, resp)=>{
     resp.send('<p>some html</p>')
